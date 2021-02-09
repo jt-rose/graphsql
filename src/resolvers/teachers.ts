@@ -29,8 +29,17 @@ export class TeachersResolver {
   @Query(() => [Int])
   async salaries() {
     const res = await pool.query(sql`
-      SELECT salary FROM teachers;
+      SELECT salary FROM teachers
+      ORDER BY salary DESC;
       `)
     return res.rows.map((teacher) => teacher.salary)
+  }
+
+  @Query(() => [String])
+  async schools() {
+    const res = await pool.query(sql`
+      SELECT DISTINCT school FROM teachers;
+      `)
+    return res.rows.map((x) => x.school)
   }
 }

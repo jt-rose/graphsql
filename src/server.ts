@@ -1,5 +1,6 @@
 import 'reflect-metadata'
 import { TeachersResolver } from './resolvers/teachers'
+import { EmployeesResolver } from './resolvers/employees'
 //import { createTeachersTable, insertTeachers } from './sql/buildSchema'
 //import { createDeptTable, createEmployeesTable } from './sql/employeesSchema'
 //import { pool } from './utils/pool'
@@ -17,7 +18,7 @@ const main = async () => {
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [TeachersResolver],
+      resolvers: [TeachersResolver, EmployeesResolver],
       validate: false,
     }),
     // context

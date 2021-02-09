@@ -20,3 +20,12 @@ export class Teachers {
   @Field(() => Int)
   salary: number
 }
+
+@ObjectType()
+export class SchoolSalaries {
+  @Field()
+  school: string
+
+  @Field(() => Int)
+  salary: number
+}

@@ -1,6 +1,10 @@
 import { sql } from 'slonik'
 import { pool } from './../utils/pool'
-import { SchoolSalaries, Teachers } from './../entities/TEACHERS'
+import {
+  SalariesByHireDate,
+  SchoolSalaries,
+  Teachers,
+} from './../entities/TEACHERS'
 import { Arg, Int, Query, Resolver } from 'type-graphql'
 
 @Resolver(Teachers)
@@ -49,6 +53,16 @@ export class TeachersResolver {
         SELECT DISTINCT school, salary FROM Teachers
         ORDER BY school ASC, salary DESC;
       `)
+
+    return res.rows
+  }
+
+  @Query(() => [SalariesByHireDate])
+  async salariesByHireDate() {
+    const res = await pool.query(sql`
+    SELECT hire_date, salary FROM Teachers
+    ORDER BY hire_date ASC;
+  `)
 
     return res.rows
   }

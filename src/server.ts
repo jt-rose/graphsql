@@ -1,6 +1,7 @@
 import 'reflect-metadata'
 import { TeachersResolver } from './resolvers/teachers'
 //import { createTeachersTable, insertTeachers } from './sql/buildSchema'
+//import { createDeptTable, createEmployeesTable } from './sql/employeesSchema'
 //import { pool } from './utils/pool'
 //import { sql } from 'slonik'
 import express from 'express'

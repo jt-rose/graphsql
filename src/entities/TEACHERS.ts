@@ -29,3 +29,12 @@ export class SchoolSalaries {
   @Field(() => Int)
   salary: number
 }
+
+@ObjectType()
+export class SalariesByHireDate {
+  @Field()
+  hire_date: string
+
+  @Field(() => Int)
+  salary: number
+}

@@ -1,6 +1,7 @@
 import 'reflect-metadata'
 import { TeachersResolver } from './resolvers/teachers'
 import { EmployeesResolver } from './resolvers/employees'
+import { NYC_Addresses_Resolver } from './resolvers/nycAddresses'
 //import { createTeachersTable, insertTeachers } from './sql/buildSchema'
 //import { createDeptTable, createEmployeesTable } from './sql/employeesSchema'
 //import { pool } from './utils/pool'
@@ -13,12 +14,11 @@ import { buildSchema } from 'type-graphql'
 
 const main = async () => {
   const app = express()
-
   /* ---------------------------- connect to apollo --------------------------- */
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [TeachersResolver, EmployeesResolver],
+      resolvers: [TeachersResolver, EmployeesResolver, NYC_Addresses_Resolver],
       validate: false,
     }),
     // context

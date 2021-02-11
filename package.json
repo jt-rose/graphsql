@@ -12,9 +12,13 @@
   },
   "dependencies": {
     "@apollo/server": "^3.0.0-alpha.1",
+    "@types/chalk": "^2.2.0",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.11",
+    "apollo-log": "^1.0.1",
     "apollo-server-express": "^2.19.2",
+    "apollo-server-plugin-base": "^0.10.4",
+    "chalk": "^4.1.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "graphql": "^15.5.0",
@@ -24,5 +28,6 @@
     "ts-node": "^9.1.1",
     "type-graphql": "^1.1.1",
     "typescript": "^4.1.3"
-  }
+  },
+  "devDependencies": {}
 }

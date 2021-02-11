@@ -9,11 +9,13 @@ import { NYC_Addresses_Resolver } from './resolvers/nycAddresses'
 import express from 'express'
 import { ApolloServer } from 'apollo-server-express'
 import { buildSchema } from 'type-graphql'
+import { apolloLogger } from './utils/apolloLogger'
 
 /* ------------------------ set up async main wrapper ----------------------- */
 
 const main = async () => {
   const app = express()
+
   /* ---------------------------- connect to apollo --------------------------- */
 
   const apolloServer = new ApolloServer({
@@ -21,6 +23,8 @@ const main = async () => {
       resolvers: [TeachersResolver, EmployeesResolver, NYC_Addresses_Resolver],
       validate: false,
     }),
+    plugins: [apolloLogger],
+    //plugins: [ApolloLogPlugin({})],
     // context
   })
 

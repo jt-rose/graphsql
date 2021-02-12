@@ -1,0 +1,42 @@
+when setting up the db/ node, it occurred to me that 
+I'm doing three repetitive things related to the shape of a table
+
+1. create the table in sql
+2. mark fields for apollo graphql
+3. set up validation for user submitted fields upon create/update
+
+it would be nice if this could all be handled at once 
+with one entity declaration
+
+Combining type-graphql with typeORM allows for something
+a bit similar to this (although without validation)
+
+it would ne nice to set that up for slonik
+
+a rough sketch of how I would like it to look
+influenced by the above combo
+
+const myTable = new GraphTable('tableName', {
+    ID: {type: 'number', constraints: ['PK']},
+
+    username: {type: 'string', range: [5,20]},
+
+    createdAt: {type: 'date', field: false},
+
+    bio: {type: 'text', range: [1,280]},
+
+    postIds: {type: 'list', nullable: true},
+
+    ranking: {type: 'number', constraints: ['UNIQUE']},
+})
+
+myTable.create() // generate table, ORM-style
+
+myTable.sync() // confirm same as existing table
+
+myTable.validate(['username', 'bio'])
+// create validator function that accepts obj of keynames
+// and tests against defined parameters
+
+this is just a rought sketch, but it would be quite nice
+if all of these roles could be built into a single schema declaration

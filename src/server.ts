@@ -2,6 +2,7 @@ import 'reflect-metadata'
 import { TeachersResolver } from './resolvers/teachers'
 import { EmployeesResolver } from './resolvers/employees'
 import { NYC_Addresses_Resolver } from './resolvers/nycAddresses'
+import { LibUsageResolver } from './resolvers/libUsage'
 //import { createTeachersTable, insertTeachers } from './sql/buildSchema'
 //import { createDeptTable, createEmployeesTable } from './sql/employeesSchema'
 //import { pool } from './utils/pool'
@@ -20,7 +21,12 @@ const main = async () => {
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [TeachersResolver, EmployeesResolver, NYC_Addresses_Resolver],
+      resolvers: [
+        TeachersResolver,
+        EmployeesResolver,
+        NYC_Addresses_Resolver,
+        LibUsageResolver,
+      ],
       validate: false,
     }),
     plugins: [apolloLogger],

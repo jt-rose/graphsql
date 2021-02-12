@@ -4,7 +4,7 @@ A project building a graphQL server with Apollo and Slonik while working through
 
 A few goals:
 
-- [ ] gain deeper SQL knowledge
+- [x] gain deeper SQL knowledge
 - [x] practice using apollo-server
 - [x] test out slonik in place of pg/ typeorm
 - [ ] set up dev tools for raw sql in TS (syntax highlighting, linter, etc.)

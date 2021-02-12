@@ -11,6 +11,7 @@ import express from 'express'
 import { ApolloServer } from 'apollo-server-express'
 import { buildSchema } from 'type-graphql'
 import { apolloLogger } from './utils/apolloLogger'
+import { TempReadingsResolver } from './resolvers/tempReadings'
 
 /* ------------------------ set up async main wrapper ----------------------- */
 
@@ -26,6 +27,7 @@ const main = async () => {
         EmployeesResolver,
         NYC_Addresses_Resolver,
         LibUsageResolver,
+        TempReadingsResolver,
       ],
       validate: false,
     }),

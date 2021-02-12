@@ -1,4 +1,4 @@
-import { Field, Int, ObjectType, ObjectType } from 'type-graphql'
+import { Field, Int, ObjectType } from 'type-graphql'
 
 @ObjectType()
 export class TempReadings {
@@ -25,4 +25,16 @@ export class TempDescriptions {
 
   @Field()
   temperature_description: string
+}
+
+@ObjectType()
+export class TempVariation {
+  @Field()
+  station_name: string
+
+  @Field()
+  max_temperature_group: string
+
+  @Field(() => Int)
+  count: number
 }

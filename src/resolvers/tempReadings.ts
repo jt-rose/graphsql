@@ -1,6 +1,10 @@
 import { sql } from 'slonik'
 import { pool } from './../utils/pool'
-import { TempDescriptions, TempReadings } from './../entities/TEMP_READINGS'
+import {
+  TempDescriptions,
+  TempReadings,
+  TempVariation,
+} from './../entities/TEMP_READINGS'
 import { Arg, Int, Query, Resolver } from 'type-graphql'
 
 @Resolver()
@@ -26,6 +30,29 @@ export class TempReadingsResolver {
             ELSE 'Inhumane'
         END AS temperature_description
       FROM temperature_readings;
+      `)
+
+    return res.rows
+  }
+
+  @Query(() => [TempVariation])
+  async tempVariation() {
+    const res = await pool.query(sql`
+      WITH temps_collapsed (station_name, max_temperature_group) 
+        AS (SELECT station_name, 
+            CASE WHEN max_temp >= 90 THEN 'Hot'
+            WHEN max_temp BETWEEN 70 AND 89 THEN 'Warm'
+            WHEN max_temp BETWEEN 50 AND 69 THEN 'Pleasant'
+            WHEN max_temp BETWEEN 33 AND 49 THEN 'Cold'
+            WHEN max_temp BETWEEN 20 AND 32 THEN 'Freezing'
+            ELSE 'Inhumane'
+        END
+      FROM temperature_readings)
+
+      SELECT station_name, max_temperature_group, count(*)
+      FROM temps_collapsed
+      GROUP BY station_name, max_temperature_group
+      ORDER BY station_name, count(*) DESC;
       `)
 
     return res.rows

@@ -1,7 +1,7 @@
 import { sql } from 'slonik'
 import { pool } from './../utils/pool'
 import { Employees, Departments, SalaryByDept } from './../entities/EMPLOYEES'
-import { Arg, Int, Query, Resolver } from 'type-graphql'
+import { Query, Resolver } from 'type-graphql'
 
 @Resolver()
 export class EmployeesResolver {
